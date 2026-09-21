@@ -19,6 +19,41 @@ body {
   overflow: hidden;
   perspective: 1000px;
 }
+
+/* Keep the responsive message card above the legacy animation rules. */
+body.scene .karaoke {
+  position: fixed;
+  top: auto;
+  bottom: 8vh;
+  left: 50%;
+  width: min(650px, calc(100% - 40px));
+  padding: 18px 22px;
+  color: #fffdf2;
+  background: rgba(38, 61, 43, .76);
+  border: 1px solid rgba(255, 247, 205, .28);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(38, 61, 43, .18);
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.6;
+  transform: translateX(-50%);
+}
+
+body.scene .karaoke span {
+  opacity: 1;
+  animation: word-glow 3.4s var(--delay) ease-in-out infinite;
+}
+
+@media (max-width: 700px) {
+  body.scene .flowers { transform: scale(.7) translateY(-4vh); }
+  body.scene .karaoke { bottom: max(18px, 5svh); width: calc(100% - 28px); padding: 12px 10px; font-size: clamp(.86rem, 4vw, 1.05rem); line-height: 1.42; }
+}
+
+@media (max-width: 380px), (max-height: 680px) {
+  body.scene .flowers { transform: scale(.6) translateY(-6vh); }
+  body.scene .karaoke { bottom: 12px; padding: 9px 8px; font-size: .8rem; }
+}
 .night {
   position: fixed;
   left: 50%;
@@ -1551,6 +1586,83 @@ body {
   -webkit-animation-play-state: paused !important;
   animation-play-state: paused !important;
 } /*# sourceMappingURL=main.css.map */
+
+/* Presentation layer for the spring scene. */
+body.scene {
+  --scene-ink: #263d2b;
+  --scene-gold: #f5c744;
+  display: block;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  color: var(--scene-ink);
+  font-family: 'DM Sans', sans-serif;
+  background: #dcebd3;
+}
+
+body.scene .night {
+  z-index: -2;
+  filter: none;
+  background: radial-gradient(circle at 50% 18%, rgba(255, 250, 214, .92) 0 8%, transparent 38%), linear-gradient(180deg, #c8e6d0 0%, #eaf0cf 48%, #c5dcae 100%);
+}
+
+body.scene .night::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 26vh;
+  background: linear-gradient(180deg, transparent, rgba(43, 101, 52, .18));
+}
+
+.scene-header {
+  position: fixed;
+  z-index: 220;
+  top: clamp(24px, 6vh, 68px);
+  left: 50%;
+  width: min(520px, calc(100% - 40px));
+  text-align: center;
+  transform: translateX(-50%);
+  animation: scene-intro .9s ease both;
+}
+
+.scene-kicker { margin: 0 0 10px; color: #ba6b42; font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.scene-header h1 { margin: 0; color: var(--scene-ink); font-family: 'Fraunces', serif; font-size: clamp(2.25rem, 5vw, 4.6rem); line-height: .95; }
+.scene-message { max-width: 340px; margin: 15px auto 0; color: #4c7050; font-size: .95rem; line-height: 1.5; }
+.scene-back { position: fixed; z-index: 240; top: 28px; left: 28px; padding: 9px 15px; color: var(--scene-ink); border: 1px solid rgba(38, 61, 43, .24); border-radius: 999px; background: rgba(255, 250, 237, .46); font-size: .78rem; text-decoration: none; transition: background .2s ease, transform .2s ease; }
+.scene-back::before { content: '←'; margin-right: 7px; }
+.scene-back:hover { background: rgba(255, 250, 237, .9); transform: translateX(-3px); }
+
+body.scene .flowers { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; transform: scale(.86) translateY(7vh); transform-origin: bottom center; }
+body.scene .flower__leaf { background-image: linear-gradient(to top, #e8a900, #ffe873 75%, #fff5b0); box-shadow: inset 0 0 2vmin rgba(255,255,255,.7), 0 0 2vmin rgba(241, 186, 18, .16); }
+body.scene .flower__line { background-image: linear-gradient(to left, rgba(0,0,0,.16), transparent, rgba(255,255,255,.25)), linear-gradient(to top, transparent 10%, #347b3d, #6eaa49); }
+
+.karaoke { position: fixed; z-index: 230; left: 50%; bottom: 8vh; width: min(650px, calc(100% - 40px)); padding: 18px 22px; color: #fffdf2; background: rgba(38, 61, 43, .76); border: 1px solid rgba(255, 247, 205, .28); border-radius: 18px; box-shadow: 0 18px 40px rgba(38, 61, 43, .18); font-family: 'Fraunces', serif; font-size: clamp(1.1rem, 2vw, 1.55rem); line-height: 1.6; text-align: center; transform: translateX(-50%); backdrop-filter: blur(10px); animation: scene-intro 1s .25s ease both; }
+.karaoke span { display: inline-block; animation: word-glow 3.4s var(--delay) ease-in-out infinite; }
+
+@keyframes scene-intro { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes word-glow { 0%, 100% { color: #fffdf2; } 50% { color: var(--scene-gold); } }
+
+@media (max-width: 700px) {
+  body.scene { min-height: 100svh; }
+  .scene-header { top: 68px; width: min(350px, calc(100% - 32px)); }
+  .scene-kicker { margin-bottom: 8px; font-size: .62rem; }
+  .scene-header h1 { font-size: clamp(2rem, 11vw, 3rem); }
+  .scene-message { margin-top: 10px; font-size: .82rem; }
+  .scene-back { top: 18px; left: 18px; }
+  body.scene .flowers { transform: scale(.66) translateY(13vh); }
+  .karaoke { bottom: max(18px, 5svh); width: calc(100% - 28px); padding: 12px 10px; font-size: clamp(.86rem, 4vw, 1.05rem); line-height: 1.42; }
+}
+
+@media (max-width: 380px), (max-height: 680px) {
+  .scene-header { top: 58px; }
+  .scene-message { max-width: 280px; font-size: .74rem; }
+  body.scene .flowers { transform: scale(.56) translateY(14vh); }
+  .karaoke { bottom: 12px; padding: 9px 8px; font-size: .8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
 .bubbles {
   position: absolute;
   top: 0;
@@ -2318,4 +2430,35 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+body.scene .karaoke {
+  position: fixed;
+  top: auto;
+  bottom: 8vh;
+  left: 50%;
+  width: min(650px, calc(100% - 40px));
+  padding: 18px 22px;
+  color: #fffdf2;
+  background: rgba(38, 61, 43, .76);
+  border: 1px solid rgba(255, 247, 205, .28);
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(38, 61, 43, .18);
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.6;
+  transform: translateX(-50%);
+}
+
+body.scene .karaoke span { opacity: 1; animation: word-glow 3.4s var(--delay) ease-in-out infinite; }
+
+@media (max-width: 700px) {
+  body.scene .flowers { transform: scale(.7) translateY(-4vh); }
+  body.scene .karaoke { bottom: max(18px, 5svh); width: calc(100% - 28px); padding: 12px 10px; font-size: clamp(.86rem, 4vw, 1.05rem); line-height: 1.42; }
+}
+
+@media (max-width: 380px), (max-height: 680px) {
+  body.scene .flowers { transform: scale(.6) translateY(-6vh); }
+  body.scene .karaoke { bottom: 12px; padding: 9px 8px; font-size: .8rem; }
 }

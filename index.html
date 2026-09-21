@@ -1,77 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abre la sorpresa</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>Una primavera para ti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            background-color: #a09c6a;
-            color: white;
-            text-align: center;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .glowing-text {
-            font-family: 'Dancing Script', cursive; 
-            font-size: 3rem;
-            line-height: 1.2;
-            animation: glowingPhrase 3s linear infinite;
-        }
-
-        @keyframes glowingPhrase {
-            0%, 100% { color: white; }
-            50% { color: yellow; }
-        }
-
-        .btn-custom {
-            font-size: 1.5rem;
-            padding: 15px 30px;
-            color: yellow;
-            background-color: black;
-            border: 2px solid yellow;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            margin-top: 30px;
-        }
-
-
-        .btn-custom:hover {
-            background-color: red;
-            color: white;
-            font-weight: bold;
-            border-color: red;
-        }
-
-        .btn-custom:active {
-            background-color: red;
-            color: white;
-            border-color: red;
-        }
+        :root { --ink: #243d2b; --paper: #fff9ed; --coral: #de6b54; }
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body { margin: 0; min-height: 100vh; overflow: hidden; color: var(--ink); font-family: 'DM Sans', sans-serif; background: var(--paper); }
+        .welcome { position: relative; display: grid; place-items: center; min-height: 100vh; padding: 32px; overflow: hidden; isolation: isolate; background: radial-gradient(circle at 82% 12%, #fff1be 0 12%, transparent 32%), linear-gradient(135deg, #fffaf0 0%, #f8f1d9 52%, #dcebd2 100%); }
+        .welcome::before, .welcome::after { content: ''; position: absolute; z-index: -1; border: 1px solid rgba(36, 61, 43, .12); border-radius: 50%; }
+        .welcome::before { width: 68vmin; height: 68vmin; top: -38vmin; right: -12vmin; }
+        .welcome::after { width: 45vmin; height: 45vmin; bottom: -25vmin; left: -10vmin; }
+        .welcome__leaf { position: absolute; width: 160px; height: 82px; border-radius: 100% 0; background: rgba(83, 146, 77, .16); transform: rotate(-28deg); }
+        .welcome__leaf--one { top: 18%; left: 7%; }
+        .welcome__leaf--two { right: 6%; bottom: 17%; transform: rotate(152deg); background: rgba(222, 107, 84, .13); }
+        .welcome__content { width: min(760px, 100%); text-align: center; animation: appear .9s ease both; }
+        .eyebrow { margin: 0 0 18px; color: var(--coral); font-size: .76rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+        .glowing-text { margin: 0; font-family: 'Fraunces', serif; font-size: clamp(3.4rem, 8vw, 7.4rem); font-weight: 600; line-height: .95; letter-spacing: -.04em; }
+        .glowing-text span { display: block; color: var(--coral); font-style: italic; }
+        .welcome__copy { max-width: 430px; margin: 26px auto 0; color: #58705c; font-size: 1.05rem; line-height: 1.65; }
+        .btn-custom { display: inline-flex; align-items: center; gap: 12px; margin-top: 34px; padding: 15px 24px; color: #fffdf5; background: var(--ink); border: 0; border-radius: 999px; box-shadow: 0 12px 28px rgba(36, 61, 43, .2); font: inherit; font-weight: 700; cursor: pointer; transition: transform .25s ease, background .25s ease, box-shadow .25s ease; }
+        .btn-custom::after { content: '→'; font-size: 1.2rem; transition: transform .25s ease; }
+        .btn-custom:hover { background: var(--coral); box-shadow: 0 16px 30px rgba(222, 107, 84, .24); transform: translateY(-3px); }
+        .btn-custom:hover::after { transform: translateX(4px); }
+        .signature { margin-top: 56px; color: #82917d; font-size: .78rem; letter-spacing: .08em; }
+        @keyframes appear { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 600px) { .welcome { padding: 24px; } .welcome__copy { font-size: .95rem; } .signature { margin-top: 44px; } }
     </style>
 </head>
-<body>
-    <div class="glowing-text">
-     HOY ES UN DIA ESPECIAL
-     <hr>
-         FELIZ PRIMAVERA MI AMOR Dayli la más hermosa❤
-    </div>
-    
-    <button class="btn btn-custom" onclick="window.location.href='Principal.html';">CLICK AQUÍ</button>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
+<body class="welcome">
+    <span class="welcome__leaf welcome__leaf--one" aria-hidden="true"></span>
+    <span class="welcome__leaf welcome__leaf--two" aria-hidden="true"></span>
+    <main class="welcome__content">
+        <p class="eyebrow">Un pequeño detalle para ti</p>
+        <h1 class="glowing-text">Hoy florece<br><span>algo especial</span></h1>
+        <p class="welcome__copy">Porque haces más bonitos mis días, preparé este rincón lleno de luz, color y flores amarillas para celebrar esta primavera.</p>
+        <button class="btn-custom" type="button" onclick="window.location.href='Principal.html';">Abrir mi sorpresa</button>
+        <p class="signature">Para Dayli, la más hermosa</p>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
