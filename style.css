@@ -54,6 +54,46 @@ body.scene .karaoke span {
   body.scene .flowers { transform: scale(.6) translateY(-6vh); }
   body.scene .karaoke { bottom: 12px; padding: 9px 8px; font-size: .8rem; }
 }
+
+.nurse-note {
+  position: fixed;
+  z-index: 235;
+  top: 250px;
+  left: 32px;
+  display: flex;
+  gap: 14px;
+  width: min(300px, calc(100% - 64px));
+  padding: 18px;
+  color: #294332;
+  background: rgba(255, 252, 235, .78);
+  border: 1px solid rgba(70, 112, 67, .2);
+  border-radius: 18px;
+  box-shadow: 0 16px 34px rgba(53, 89, 48, .12);
+  backdrop-filter: blur(10px);
+  animation: note-in .9s .35s ease both;
+}
+
+.nurse-note__mark { display: grid; flex: 0 0 34px; place-items: center; width: 34px; height: 34px; color: #fffdf1; background: #d86d52; border-radius: 50%; font-size: 1.5rem; font-weight: 400; line-height: 1; }
+.nurse-note__eyebrow { margin: 1px 0 6px; color: #bf684c; font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.nurse-note h2 { margin: 0; color: #294332; font-family: 'Fraunces', serif; font-size: 1.35rem; line-height: 1.05; }
+.nurse-note p:not(.nurse-note__eyebrow):not(.nurse-note__closing) { margin: 10px 0 0; color: #57705b; font-size: .78rem; line-height: 1.55; }
+.nurse-note__closing { margin: 12px 0 0; color: #bf684c; font-family: 'Fraunces', serif; font-size: .9rem; font-style: italic; }
+
+@keyframes note-in { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: translateX(0); } }
+
+@media (max-width: 700px) {
+  .nurse-note { top: 202px; left: 14px; width: calc(100% - 28px); padding: 13px 14px; gap: 11px; border-radius: 15px; }
+  .nurse-note__mark { flex-basis: 29px; width: 29px; height: 29px; font-size: 1.2rem; }
+  .nurse-note h2 { font-size: 1.1rem; }
+  .nurse-note p:not(.nurse-note__eyebrow):not(.nurse-note__closing) { margin-top: 7px; font-size: .72rem; line-height: 1.4; }
+  .nurse-note__closing { margin-top: 8px; font-size: .82rem; }
+}
+
+@media (max-width: 380px), (max-height: 680px) {
+  .nurse-note { top: 174px; padding: 10px 11px; }
+  .nurse-note h2 { font-size: 1rem; }
+  .nurse-note p:not(.nurse-note__eyebrow):not(.nurse-note__closing) { font-size: .67rem; }
+}
 .night {
   position: fixed;
   left: 50%;
